@@ -22,26 +22,48 @@
       <h1>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
 
-<p><a href="https://gitter.im/mgechev/angular2-seed?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/mgechev/angular2-seed"></a>
+<p><a href="https://travis-ci.org/mgechev/angular2-seed"><img src="https://travis-ci.org/mgechev/angular2-seed.svg?branch=master" alt="Build Status"></a>
+<a href="https://gitter.im/mgechev/angular2-seed?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/mgechev/angular2-seed"></a>
+<a href="http://opensource.org/licenses/MIT"><img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT license"></a>
 <a href="https://david-dm.org/mgechev/angular2-seed"><img src="https://david-dm.org/mgechev/angular2-seed.svg" alt="Dependency Status"></a>
-<a href="https://david-dm.org/mgechev/angular2-seed#info=devDependencies"><img src="https://david-dm.org/mgechev/angular2-seed/dev-status.svg" alt="devDependency Status"></a>
-<a href="https://travis-ci.org/mgechev/angular2-seed"><img src="https://travis-ci.org/mgechev/angular2-seed.svg?branch=master" alt="Build Status"></a>
-<a href="http://opensource.org/licenses/MIT"><img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT license"></a></p>
+<a href="https://david-dm.org/mgechev/angular2-seed#info=devDependencies"><img src="https://david-dm.org/mgechev/angular2-seed/dev-status.svg" alt="devDependency Status"></a></p>
 
 <p>A seed project for Angular 2 apps.</p>
 
-<p>It is something similar to the AngularJS Quick Start but does the entire build with gulp.</p>
+<p>It is something similar to the Angular Quick Start but does the entire build with gulp.</p>
+
+<p><code>angular2-seed</code> provides the following features:</p>
+
+<ul>
+<li>Ready to go, statically typed build system using gulp for working with TypeScript</li>
+<li>Production and development builds</li>
+<li>Sample unit tests with Jasmine and Karma</li>
+<li>End-to-end tests with Protractor</li>
+<li>Development server with Livereload</li>
+<li>Experimental hot loading support</li>
+<li>Following the best practices for your application’s structure</li>
+<li>Manager of your type definitions using tsd</li>
+<li>Basic Service Worker, which implements "Cache then network strategy"</li>
+</ul>
 
 <h1>
 <a id="how-to-start" class="anchor" href="#how-to-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to start</h1>
 
 <p><strong>Note</strong> that this seed project requires node v4.x.x or higher and npm 2.14.7.</p>
 
-<div class="highlight highlight-source-shell"><pre>git clone https://github.com/mgechev/angular2-seed.git
+<div class="highlight highlight-source-shell"><pre>git clone --depth 1 https://github.com/mgechev/angular2-seed.git
 <span class="pl-c1">cd</span> angular2-seed
-npm install       <span class="pl-c"># or `npm run reinstall` if you get an error</span>
-npm start         <span class="pl-c"># start with --env dev</span>
-npm run docs      <span class="pl-c"># api document for app</span></pre></div>
+<span class="pl-c"># install the project's dependencies</span>
+npm install
+<span class="pl-c"># watches your files and uses livereload by default</span>
+npm start
+<span class="pl-c"># api document for the app</span>
+npm run docs
+
+<span class="pl-c"># dev build</span>
+npm build.dev
+<span class="pl-c"># prod build</span>
+npm build.prod</pre></div>
 
 <h2>
 <a id="using-the-experimental-hot-loader-support" class="anchor" href="#using-the-experimental-hot-loader-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the experimental hot loader support</h2>
@@ -128,28 +150,6 @@ npm run docs      <span class="pl-c"># api document for app</span></pre></div>
 ├── tools
 │   ├── config.ts
 │   ├── tasks
-│   │   ├── build.assets.dev.ts
-│   │   ├── build.assets.prod.ts
-│   │   ├── build.bundles.ts
-│   │   ├── build.deps.ts
-│   │   ├── build.docs.ts
-│   │   ├── build.html_css.prod.ts
-│   │   ├── build.index.ts
-│   │   ├── build.js.dev.ts
-│   │   ├── build.js.prod.ts
-│   │   ├── build.sass.dev.ts
-│   │   ├── build.test.ts
-│   │   ├── check.versions.ts
-│   │   ├── clean.ts
-│   │   ├── karma.start.ts
-│   │   ├── npm.ts
-│   │   ├── serve.docs.ts
-│   │   ├── server.start.ts
-│   │   ├── tsd.ts
-│   │   ├── tslint.ts
-│   │   ├── watch.dev.ts
-│   │   ├── watch.serve.ts
-│   │   └── watch.test.ts
 │   ├── typings
 │   ├── utils
 │   │   ├── code_change_tools.ts
@@ -252,12 +252,12 @@ tsd install gulp-sass --save</pre></div>
 <span class="pl-c">// Build dev.</span>
 gulp.task(<span class="pl-s">'build.dev'</span>, done <span class="pl-k">=&gt;</span>
   runSequence(<span class="pl-s">'clean.dist'</span>,
-              <span class="pl-s">'tslint'</span>,
-              <span class="pl-s">'build.sass.dev'</span>,
-              <span class="pl-s">'build.assets.dev'</span>,
-              <span class="pl-s">'build.js.dev'</span>,
-              <span class="pl-s">'build.index'</span>,
-              done));
+      <span class="pl-s">'tslint'</span>,
+      <span class="pl-s">'build.sass.dev'</span>,
+      <span class="pl-s">'build.assets.dev'</span>,
+      <span class="pl-s">'build.js.dev'</span>,
+      <span class="pl-s">'build.index'</span>,
+      done));
 ...
 </pre></div>
 </li>
