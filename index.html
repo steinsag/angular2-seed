@@ -35,15 +35,15 @@
 <p><code>angular2-seed</code> provides the following features:</p>
 
 <ul>
-<li>Ready to go, statically typed build system using gulp for working with TypeScript</li>
-<li>Production and development builds</li>
-<li>Sample unit tests with Jasmine and Karma</li>
-<li>End-to-end tests with Protractor</li>
-<li>Development server with Livereload</li>
-<li>Experimental hot loading support</li>
-<li>Following the best practices for your application’s structure</li>
-<li>Manager of your type definitions using tsd</li>
-<li>Basic Service Worker, which implements "Cache then network strategy"</li>
+<li>Ready to go, statically typed build system using gulp for working with TypeScript.</li>
+<li>Production and development builds.</li>
+<li>Sample unit tests with Jasmine and Karma.</li>
+<li>End-to-end tests with Protractor.</li>
+<li>Development server with Livereload.</li>
+<li>Experimental hot loading support.</li>
+<li>Following the best practices for your application’s structure.</li>
+<li>Manager of your type definitions using tsd.</li>
+<li>Basic Service Worker, which implements "Cache then network strategy".</li>
 </ul>
 
 <h1>
@@ -61,9 +61,9 @@ npm start
 npm run docs
 
 <span class="pl-c"># dev build</span>
-npm build.dev
+npm run build.dev
 <span class="pl-c"># prod build</span>
-npm build.prod</pre></div>
+npm run build.prod</pre></div>
 
 <h2>
 <a id="using-the-experimental-hot-loader-support" class="anchor" href="#using-the-experimental-hot-loader-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using the experimental hot loader support</h2>
@@ -92,14 +92,7 @@ npm build.prod</pre></div>
 <li><a href="#table-of-content">Table of Content</a></li>
 <li><a href="#directory-structure">Directory Structure</a></li>
 <li><a href="#configuration">Configuration</a></li>
-<li>
-<a href="#how-to-extend-">How to extend?</a>
-
-<ul>
-<li><a href="#adding-custom-libraries">Adding custom libraries</a></li>
-<li><a href="#adding-custom-gulp-task">Adding custom gulp task</a></li>
-</ul>
-</li>
+<li><a href="#how-to-extend-">How to extend?</a></li>
 <li><a href="#running-test">Running test</a></li>
 <li><a href="#contributing">Contributing</a></li>
 <li><a href="#examples">Examples</a></li>
@@ -152,11 +145,6 @@ npm build.prod</pre></div>
 │   ├── tasks
 │   ├── typings
 │   ├── utils
-│   │   ├── code_change_tools.ts
-│   │   ├── server.ts
-│   │   ├── tasks_tools.ts
-│   │   ├── template_injectables.ts
-│   │   └── template_locals.ts
 │   ├── config.ts
 │   └── utils.ts
 ├── appveyor.yml
@@ -187,88 +175,7 @@ npm build.prod</pre></div>
 <h1>
 <a id="how-to-extend" class="anchor" href="#how-to-extend" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to extend?</h1>
 
-<h2>
-<a id="adding-custom-libraries" class="anchor" href="#adding-custom-libraries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding custom libraries</h2>
-
-<p>If you want to use your custom libraries:</p>
-
-<div class="highlight highlight-source-shell"><pre>npm install my-library --save
-vim tools/config.ts</pre></div>
-
-<p>Add reference to the installed library in <code>NPM_DEPENDENCIES</code>:</p>
-
-<div class="highlight highlight-source-ts"><pre><span class="pl-k">export</span> <span class="pl-k">const</span> <span class="pl-v">NPM_DEPENDENCIES</span> <span class="pl-k">=</span> [
-  { src: <span class="pl-s">'systemjs/dist/system-polyfills.js'</span>, dest: LIB_DEST },
-
-
-  { src: <span class="pl-s">'bootstrap/dist/css/bootstrap.min.css'</span>, inject: <span class="pl-c1">true</span>, dest: CSS_DEST }
-  <span class="pl-c">// ...</span>
-  { src: <span class="pl-s">'my-library/dist/bundle.js'</span>, inject: <span class="pl-c1">true</span>, dest: LIB_DEST }
-];
-</pre></div>
-
-<ul>
-<li>
-<code>src</code> - relative to <code>node_modules</code>
-</li>
-<li>
-<code>inject</code> - indicates whether the library should be injected (if not you have to include it manually in <code>index.html</code>)</li>
-<li>
-<code>dest</code> - your library will be copied to this location. Used for the production build.</li>
-</ul>
-
-<p><strong>Do not forget to add a reference to the type definition inside the files where you use your custom library.</strong></p>
-
-<h2>
-<a id="adding-custom-gulp-task" class="anchor" href="#adding-custom-gulp-task" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding custom gulp task</h2>
-
-<p>In this example we are going to add SASS support to the seed's dev build:</p>
-
-<ol>
-<li>
-<p>Install <code>gulp-sass</code> as dependency:</p>
-
-<div class="highlight highlight-source-shell"><pre>npm install gulp-sass --save-dev</pre></div>
-</li>
-<li>
-<p>Add type definitions:</p>
-
-<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Note: tsd MUST be installed as global</span>
-tsd install gulp-sass --save</pre></div>
-</li>
-<li>
-<p>Add SASS task at <code>./tools/tasks/build.sass.dev.ts</code>:</p>
-
-<div class="highlight highlight-source-ts"><pre><span class="pl-k">import</span> {join} from <span class="pl-s">'path'</span>;
-<span class="pl-k">import</span> {APP_SRC, APP_DEST} from <span class="pl-s">'../config'</span>;
-
-<span class="pl-k">export</span> <span class="pl-k">=</span> <span class="pl-k">function</span> <span class="pl-en">buildSassDev</span>(<span class="pl-v">gulp</span>, <span class="pl-v">plugins</span>, <span class="pl-v">option</span>) {
-  <span class="pl-k">return</span> <span class="pl-k">function</span> () {
-    <span class="pl-k">return</span> gulp.src(join(APP_SRC, <span class="pl-s">'**'</span>, <span class="pl-s">'*.scss'</span>))
-      .pipe(plugins.sass().on(<span class="pl-s">'error'</span>, plugins.sass.logError))
-      .pipe(gulp.dest(APP_DEST));
-  };
-}</pre></div>
-</li>
-<li>
-<p>Add <code>build.sass.dev</code> to your dev pipeline:</p>
-
-<div class="highlight highlight-source-ts"><pre><span class="pl-c">// gulpfile.ts</span>
-...
-<span class="pl-c">// --------------</span>
-<span class="pl-c">// Build dev.</span>
-gulp.task(<span class="pl-s">'build.dev'</span>, done <span class="pl-k">=&gt;</span>
-  runSequence(<span class="pl-s">'clean.dist'</span>,
-      <span class="pl-s">'tslint'</span>,
-      <span class="pl-s">'build.sass.dev'</span>,
-      <span class="pl-s">'build.assets.dev'</span>,
-      <span class="pl-s">'build.js.dev'</span>,
-      <span class="pl-s">'build.index'</span>,
-      done));
-...
-</pre></div>
-</li>
-</ol>
+<p>Visit the <a href="https://github.com/mgechev/angular2-seed/wiki">Wiki page</a> of the project.</p>
 
 <h1>
 <a id="running-test" class="anchor" href="#running-test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running test</h1>
