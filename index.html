@@ -42,7 +42,7 @@
 <li>Development server with Livereload.</li>
 <li>Experimental hot loading support.</li>
 <li>Following the best practices for your application’s structure.</li>
-<li>Manager of your type definitions using tsd.</li>
+<li>Manager of your type definitions using <a href="https://github.com/typings/typings">typings</a>.</li>
 <li>Basic Service Worker, which implements "Cache then network strategy".</li>
 </ul>
 
@@ -50,6 +50,12 @@
 <a id="how-to-start" class="anchor" href="#how-to-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to start</h1>
 
 <p><strong>Note</strong> that this seed project requires node v4.x.x or higher and npm 2.14.7.</p>
+
+<p>You must have <code>ts-node</code> installed as global. If you don't, use:</p>
+
+<div class="highlight highlight-source-shell"><pre>npm install -g ts-node</pre></div>
+
+<p>In order to start the seed use:</p>
 
 <div class="highlight highlight-source-shell"><pre>git clone --depth 1 https://github.com/mgechev/angular2-seed.git
 <span class="pl-c1">cd</span> angular2-seed
@@ -90,73 +96,16 @@ npm run build.prod</pre></div>
 </ul>
 </li>
 <li><a href="#table-of-content">Table of Content</a></li>
-<li><a href="#directory-structure">Directory Structure</a></li>
 <li><a href="#configuration">Configuration</a></li>
-<li><a href="#how-to-extend-">How to extend?</a></li>
+<li><a href="#how-to-extend">How to extend?</a></li>
 <li><a href="#running-test">Running test</a></li>
 <li><a href="#contributing">Contributing</a></li>
 <li><a href="#examples">Examples</a></li>
+<li><a href="#directory-structure">Directory Structure</a></li>
 <li><a href="#contributors">Contributors</a></li>
 <li><a href="#change-log">Change Log</a></li>
 <li><a href="#license">License</a></li>
 </ul>
-
-<h1>
-<a id="directory-structure" class="anchor" href="#directory-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Directory Structure</h1>
-
-<pre><code>.
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-├── app
-│   ├── about
-│   │   └── components
-│   │       ├── about.e2e.ts
-│   │       ├── about.html
-│   │       ├── about.ts
-│   │       └── about_spec.ts
-│   ├── app
-│   │   └── components
-│   │       ├── app.css
-│   │       ├── app.e2e.ts
-│   │       ├── app.html
-│   │       ├── app.ts
-│   │       └── app_spec.ts
-│   ├── assets
-│   │   ├── img
-│   │   │   └── smile.png
-│   │   └── main.css
-│   ├── home
-│   │   └── components
-│   │       ├── home.css
-│   │       ├── home.html
-│   │       ├── home.ts
-│   │       └── home_spec.ts
-│   ├── shared
-│   │   └── services
-│   │       ├── name_list.ts
-│   │       └── name_list_spec.ts
-│   ├── hot_loader_main.ts
-│   ├── main.ts
-│   └── index.html
-├── dist
-├── test
-├── tools
-│   ├── tasks
-│   ├── typings
-│   ├── utils
-│   ├── config.ts
-│   └── utils.ts
-├── appveyor.yml
-├── gulpfile.ts
-├── karma.conf.js
-├── package.json
-├── protractor.conf.js
-├── test-main.js
-├── tsconfig.json
-├── tsd.json
-└── tslint.json
-</code></pre>
 
 <h1>
 <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h1>
@@ -223,6 +172,64 @@ npm run e2e-live</pre></div>
 </ul>
 
 <h1>
+<a id="directory-structure" class="anchor" href="#directory-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Directory Structure</h1>
+
+<pre><code>.
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── app
+│   ├── about
+│   │   └── components
+│   │       ├── about.e2e.ts
+│   │       ├── about.html
+│   │       ├── about.ts
+│   │       └── about_spec.ts
+│   ├── app
+│   │   └── components
+│   │       ├── app.css
+│   │       ├── app.e2e.ts
+│   │       ├── app.html
+│   │       ├── app.ts
+│   │       └── app_spec.ts
+│   ├── assets
+│   │   ├── img
+│   │   │   └── smile.png
+│   │   └── main.css
+│   ├── home
+│   │   └── components
+│   │       ├── home.css
+│   │       ├── home.html
+│   │       ├── home.ts
+│   │       ├── home.e2e.ts
+│   │       └── home_spec.ts
+│   ├── shared
+│   │   └── services
+│   │       ├── name_list.ts
+│   │       └── name_list_spec.ts
+│   ├── hot_loader_main.ts
+│   ├── main.ts
+│   └── index.html
+├── dist
+├── test
+├── tools
+│   ├── manual_typings
+│   ├── tasks
+│   ├── utils
+│   ├── config.ts
+│   └── utils.ts
+├── appveyor.yml
+├── gulpfile.ts
+├── karma.conf.js
+├── package.json
+├── protractor.conf.js
+├── test-main.js
+├── tsconfig.json
+├── tslint.json
+└── typings.json
+</code></pre>
+
+<h1>
 <a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributors</h1>
 
 <table>
@@ -232,8 +239,8 @@ npm run e2e-live</pre></div>
 <th align="center"><a href="https://github.com/ludohenin"><img alt="ludohenin" src="https://avatars.githubusercontent.com/u/1011516?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/tarlepp"><img alt="tarlepp" src="https://avatars.githubusercontent.com/u/595561?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/NathanWalker"><img alt="NathanWalker" src="https://avatars.githubusercontent.com/u/457187?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/aboeglin"><img alt="aboeglin" src="https://avatars.githubusercontent.com/u/8297302?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/jesperronn"><img alt="jesperronn" src="https://avatars.githubusercontent.com/u/6267?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/aboeglin"><img alt="aboeglin" src="https://avatars.githubusercontent.com/u/8297302?v=3&amp;s=117" width="117"></a></th>
 </tr>
 </thead>
 <tbody>
@@ -242,8 +249,8 @@ npm run e2e-live</pre></div>
 <td align="center"><a href="https://github.com/ludohenin">ludohenin</a></td>
 <td align="center"><a href="https://github.com/tarlepp">tarlepp</a></td>
 <td align="center"><a href="https://github.com/NathanWalker">NathanWalker</a></td>
-<td align="center"><a href="https://github.com/aboeglin">aboeglin</a></td>
 <td align="center"><a href="https://github.com/jesperronn">jesperronn</a></td>
+<td align="center"><a href="https://github.com/aboeglin">aboeglin</a></td>
 </tr>
 </tbody>
 </table>
@@ -253,20 +260,20 @@ npm run e2e-live</pre></div>
 <tr>
 <th align="center"><a href="https://github.com/ryzy"><img alt="ryzy" src="https://avatars.githubusercontent.com/u/994940?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/natarajanmca11"><img alt="natarajanmca11" src="https://avatars.githubusercontent.com/u/9244766?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/jerryorta-dev"><img alt="jerryorta-dev" src="https://avatars.githubusercontent.com/u/341155?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/ouq77"><img alt="ouq77" src="https://avatars.githubusercontent.com/u/1796191?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/JakePartusch"><img alt="JakePartusch" src="https://avatars.githubusercontent.com/u/6424140?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/larsthorup"><img alt="larsthorup" src="https://avatars.githubusercontent.com/u/1202959?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/ouq77"><img alt="ouq77" src="https://avatars.githubusercontent.com/u/1796191?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/jerryorta-dev"><img alt="jerryorta-dev" src="https://avatars.githubusercontent.com/u/341155?v=3&amp;s=117" width="117"></a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="center"><a href="https://github.com/ryzy">ryzy</a></td>
 <td align="center"><a href="https://github.com/natarajanmca11">natarajanmca11</a></td>
-<td align="center"><a href="https://github.com/jerryorta-dev">jerryorta-dev</a></td>
-<td align="center"><a href="https://github.com/ouq77">ouq77</a></td>
 <td align="center"><a href="https://github.com/JakePartusch">JakePartusch</a></td>
 <td align="center"><a href="https://github.com/larsthorup">larsthorup</a></td>
+<td align="center"><a href="https://github.com/ouq77">ouq77</a></td>
+<td align="center"><a href="https://github.com/jerryorta-dev">jerryorta-dev</a></td>
 </tr>
 </tbody>
 </table>
@@ -274,22 +281,22 @@ npm run e2e-live</pre></div>
 <table>
 <thead>
 <tr>
+<th align="center"><a href="https://github.com/evanplaice"><img alt="evanplaice" src="https://avatars.githubusercontent.com/u/303159?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/LuxDie"><img alt="LuxDie" src="https://avatars.githubusercontent.com/u/12536671?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/c-ice"><img alt="c-ice" src="https://avatars.githubusercontent.com/u/347238?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/TuiKiken"><img alt="TuiKiken" src="https://avatars.githubusercontent.com/u/959821?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/juristr"><img alt="juristr" src="https://avatars.githubusercontent.com/u/542458?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/johnjelinek"><img alt="johnjelinek" src="https://avatars.githubusercontent.com/u/873610?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/redian"><img alt="redian" src="https://avatars.githubusercontent.com/u/816941?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/dwido"><img alt="dwido" src="https://avatars.githubusercontent.com/u/154235?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/evanplaice"><img alt="evanplaice" src="https://avatars.githubusercontent.com/u/303159?v=3&amp;s=117" width="117"></a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td align="center"><a href="https://github.com/evanplaice">evanplaice</a></td>
+<td align="center"><a href="https://github.com/LuxDie">LuxDie</a></td>
 <td align="center"><a href="https://github.com/c-ice">c-ice</a></td>
 <td align="center"><a href="https://github.com/TuiKiken">TuiKiken</a></td>
+<td align="center"><a href="https://github.com/juristr">juristr</a></td>
 <td align="center"><a href="https://github.com/johnjelinek">johnjelinek</a></td>
-<td align="center"><a href="https://github.com/redian">redian</a></td>
-<td align="center"><a href="https://github.com/dwido">dwido</a></td>
-<td align="center"><a href="https://github.com/evanplaice">evanplaice</a></td>
 </tr>
 </tbody>
 </table>
@@ -297,22 +304,45 @@ npm run e2e-live</pre></div>
 <table>
 <thead>
 <tr>
+<th align="center"><a href="https://github.com/devanp92"><img alt="devanp92" src="https://avatars.githubusercontent.com/u/4533277?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/dstockhammer"><img alt="dstockhammer" src="https://avatars.githubusercontent.com/u/1156637?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/dwido"><img alt="dwido" src="https://avatars.githubusercontent.com/u/154235?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/briantopping"><img alt="briantopping" src="https://avatars.githubusercontent.com/u/158115?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/koodikindral"><img alt="koodikindral" src="https://avatars.githubusercontent.com/u/6285484?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/dszymczuk"><img alt="dszymczuk" src="https://avatars.githubusercontent.com/u/539352?v=3&amp;s=117" width="117"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><a href="https://github.com/devanp92">devanp92</a></td>
+<td align="center"><a href="https://github.com/dstockhammer">dstockhammer</a></td>
+<td align="center"><a href="https://github.com/dwido">dwido</a></td>
+<td align="center"><a href="https://github.com/briantopping">briantopping</a></td>
+<td align="center"><a href="https://github.com/koodikindral">koodikindral</a></td>
+<td align="center"><a href="https://github.com/dszymczuk">dszymczuk</a></td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
 <th align="center"><a href="https://github.com/justindujardin"><img alt="justindujardin" src="https://avatars.githubusercontent.com/u/101493?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/lihaibh"><img alt="lihaibh" src="https://avatars.githubusercontent.com/u/4681233?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/Brooooooklyn"><img alt="Brooooooklyn" src="https://avatars.githubusercontent.com/u/3468483?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/tandu"><img alt="tandu" src="https://avatars.githubusercontent.com/u/273313?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/markharding"><img alt="markharding" src="https://avatars.githubusercontent.com/u/851436?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/mjwwit"><img alt="mjwwit" src="https://avatars.githubusercontent.com/u/4455124?v=3&amp;s=117" width="117"></a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><a href="https://github.com/briantopping">briantopping</a></td>
 <td align="center"><a href="https://github.com/justindujardin">justindujardin</a></td>
 <td align="center"><a href="https://github.com/lihaibh">lihaibh</a></td>
 <td align="center"><a href="https://github.com/Brooooooklyn">Brooooooklyn</a></td>
 <td align="center"><a href="https://github.com/tandu">tandu</a></td>
 <td align="center"><a href="https://github.com/markharding">markharding</a></td>
+<td align="center"><a href="https://github.com/mjwwit">mjwwit</a></td>
 </tr>
 </tbody>
 </table>
@@ -320,22 +350,22 @@ npm run e2e-live</pre></div>
 <table>
 <thead>
 <tr>
-<th align="center"><a href="https://github.com/mjwwit"><img alt="mjwwit" src="https://avatars.githubusercontent.com/u/4455124?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/robertpenner"><img alt="robertpenner" src="https://avatars.githubusercontent.com/u/79827?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/ocombe"><img alt="ocombe" src="https://avatars.githubusercontent.com/u/265378?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/gdi2290"><img alt="gdi2290" src="https://avatars.githubusercontent.com/u/1016365?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/typekpb"><img alt="typekpb" src="https://avatars.githubusercontent.com/u/499820?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/philipooo"><img alt="philipooo" src="https://avatars.githubusercontent.com/u/1702399?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/dstockhammer"><img alt="dstockhammer" src="https://avatars.githubusercontent.com/u/1156637?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/redian"><img alt="redian" src="https://avatars.githubusercontent.com/u/816941?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/Bigous"><img alt="Bigous" src="https://avatars.githubusercontent.com/u/6886560?v=3&amp;s=117" width="117"></a></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><a href="https://github.com/mjwwit">mjwwit</a></td>
+<td align="center"><a href="https://github.com/robertpenner">robertpenner</a></td>
 <td align="center"><a href="https://github.com/ocombe">ocombe</a></td>
-<td align="center"><a href="https://github.com/gdi2290">gdi2290</a></td>
 <td align="center"><a href="https://github.com/typekpb">typekpb</a></td>
 <td align="center"><a href="https://github.com/philipooo">philipooo</a></td>
-<td align="center"><a href="https://github.com/dstockhammer">dstockhammer</a></td>
+<td align="center"><a href="https://github.com/redian">redian</a></td>
+<td align="center"><a href="https://github.com/Bigous">Bigous</a></td>
 </tr>
 </tbody>
 </table>
@@ -343,8 +373,7 @@ npm run e2e-live</pre></div>
 <table>
 <thead>
 <tr>
-<th align="center"><a href="https://github.com/Bigous"><img alt="Bigous" src="https://avatars.githubusercontent.com/u/6886560?v=3&amp;s=117" width="117"></a></th>
-<th align="center"><a href="https://github.com/robertpenner"><img alt="robertpenner" src="https://avatars.githubusercontent.com/u/79827?v=3&amp;s=117" width="117"></a></th>
+<th align="center"><a href="https://github.com/gdi2290"><img alt="gdi2290" src="https://avatars.githubusercontent.com/u/1016365?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/sclausen"><img alt="sclausen" src="https://avatars.githubusercontent.com/u/916076?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/butterfieldcons"><img alt="butterfieldcons" src="https://avatars.githubusercontent.com/u/12204784?v=3&amp;s=117" width="117"></a></th>
 <th align="center"><a href="https://github.com/jgolla"><img alt="jgolla" src="https://avatars.githubusercontent.com/u/1542447?v=3&amp;s=117" width="117"></a></th>
@@ -353,8 +382,7 @@ npm run e2e-live</pre></div>
 </thead>
 <tbody>
 <tr>
-<td align="center"><a href="https://github.com/Bigous">Bigous</a></td>
-<td align="center"><a href="https://github.com/robertpenner">robertpenner</a></td>
+<td align="center"><a href="https://github.com/gdi2290">gdi2290</a></td>
 <td align="center"><a href="https://github.com/sclausen">sclausen</a></td>
 <td align="center"><a href="https://github.com/butterfieldcons">butterfieldcons</a></td>
 <td align="center"><a href="https://github.com/jgolla">jgolla</a></td>
